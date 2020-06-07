@@ -25,7 +25,11 @@ module.exports = appInfo => {
 
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = ['adminauth'];
+
+  config.adminauth = {
+    match: '/admin',
+  }
 
   // add your user config here
   const userConfig = {
@@ -37,6 +41,15 @@ module.exports = appInfo => {
     mapping: {
       '.html': 'ejs',
     },
+  };
+
+  // 配置mongoose连接mongodb数据库
+  config.mongoose = {
+    client: {
+      url: 'mongodb://127.0.0.1/eggxiaomi',
+      options: {},
+      // mongoose global plugins, expected a function or an array of function and options
+    }
   };
 
   return {
